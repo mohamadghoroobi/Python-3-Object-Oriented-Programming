@@ -2,6 +2,7 @@ import math
 
 
 class Point:
+    "Represents a point in two-dimensional geometric coordinates"
 
     def __init__(self, x=0, y=0):
         """Initialize the position of a new point. The x and y
@@ -28,7 +29,7 @@ class Point:
 
         return math.sqrt(
             (self.x - other_point.x) ** 2
-                + (self.y - other_point.y)
+            + (self.y - other_point.y) ** 2
         )
 
 
