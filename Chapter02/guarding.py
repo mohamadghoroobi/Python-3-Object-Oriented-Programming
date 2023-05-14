@@ -1,6 +1,7 @@
 class UsefulClass:
     """This class might be useful to other modules."""
 
+
     pass
 
 
