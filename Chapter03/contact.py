@@ -37,4 +37,5 @@ class MailSender:
         print("Sending mail to " + self.email)
 
 
-
+class EmailableContact(Contact, MailSender):
+    pass
