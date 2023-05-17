@@ -8,6 +8,7 @@ class ContactList(list):
                 matching_contacts.append(contact)
         return matching_contacts
 
+
 class Contact:
     all_contacts = ContactList()
 
@@ -23,3 +24,17 @@ class Supplier(Contact):
             "If this were a real system we would send "
             f"'{order}' order to '{self.name}'"
         )
+
+
+class Friend(Contact):
+    def __init__(self, name, email, phone):
+        super().__init__(name, email)
+        self.phone = phone
+
+
+class MailSender:
+    def send_mail(self):
+        print("Sending mail to " + self.email)
+
+
+
