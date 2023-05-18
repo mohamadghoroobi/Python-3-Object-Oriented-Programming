@@ -4,4 +4,5 @@ class LongNameDict(dict):
         for key in self:
             if not longest or len(key) > len(longest):
                 longest = key
+        print (longest)
         return longest
