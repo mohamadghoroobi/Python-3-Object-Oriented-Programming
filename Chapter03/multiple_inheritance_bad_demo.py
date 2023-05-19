@@ -23,6 +23,7 @@ class RightSubclass(BaseClass):
         print("Calling method on Right Subclass")
         self.num_right_calls += 1
 
+
 class Subclass(LeftSubclass, RightSubclass):
     num_sub_calls = 0
 
