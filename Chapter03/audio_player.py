@@ -10,3 +10,10 @@ class MP3File(AudioFile):
 
     def play(self):
         print("playing {} as mp3".format(self.filename))
+
+
+class OggFile(AudioFile):
+    ext = "ogg"
+
+    def play(self):
+        print("playing {} as ogg".format(self.filename))
