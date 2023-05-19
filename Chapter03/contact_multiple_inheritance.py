@@ -8,16 +8,15 @@ class Contact:
         self.all_contacts.append(self)
 
 class AddressHolder:
-    def __init__(self, street, city, state, code):
+    def __init__(self, street="", city="", state="", code="", **kwargs):
+        super().__init__(**kwargs)
         self.street = street
         self.city = city
         self.state = state
         self.code = code
 
 class Friend(Contact, AddressHolder):
-    def __int__(
-            self, name, email, phone, street, city, state, code):
-        Contact.__init__(self, name, email)
-        AddressHolder.__init__(self, street, city, state, code)
+    def __int__(self, phone="", **kwargs):
+        super().__int__(**kwargs)
         self.phone = phone
 
