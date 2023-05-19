@@ -6,3 +6,10 @@ class Contact:
         self.name = name
         self.email = email
         self.all_contacts.append(self)
+
+class AddressHolder:
+    def __init__(self, street, city, state, code):
+        self.street = street
+        self.city = city
+        self.state = state
+        self.code = code
