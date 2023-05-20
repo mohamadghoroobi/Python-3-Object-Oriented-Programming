@@ -10,14 +10,14 @@ class Grader:
     def register(self, assignment_class):
         if not issubclass(assignment_class, Assignment):
             raise RuntimeError(
-                "Your class does not have the right methods."
+                "Your class does not have the right methods"
             )
 
         id = uuid.uuid4()
         self.assignment_classes[id] = assignment_class
         return id
 
-    def start_assigment(self, student, id):
+    def start_assignment(self, student, id):
         self.student_graders[student] = AssignmentGrader(
             student, self.assignment_classes[id]
         )
@@ -34,9 +34,10 @@ class Grader:
         grader = self.student_graders[student]
         return f"""
         {student}'s attempts at {grader.assignment.__class__.__name__}:
-        
+
         attempts: {grader.attempts}
         correct: {grader.correct_attempts}
+
         passed: {grader.correct_attempts > 0}
         """
 
@@ -52,9 +53,9 @@ class Assignment(metaclass=abc.ABCMeta):
 
     @classmethod
     def __subclasshook__(cls, C):
-        if cls in Assignment:
+        if cls is Assignment:
             attrs = set(dir(C))
-            if set(cls.__abstactmethods__) <= attrs:
+            if set(cls.__abstractmethods__) <= attrs:
                 return True
 
         return NotImplemented
@@ -62,7 +63,7 @@ class Assignment(metaclass=abc.ABCMeta):
 
 class AssignmentGrader:
     def __init__(self, student, AssignmentClass):
-        self.assignment = AssignmentClass
+        self.assignment = AssignmentClass()
         self.assignment.student = student
         self.attempts = 0
         self.correct_attempts = 0
