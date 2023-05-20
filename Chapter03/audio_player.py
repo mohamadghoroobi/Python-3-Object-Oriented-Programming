@@ -35,3 +35,6 @@ class FlacFile:
 
         self.filename = filename
 
+    def play(self):
+        print("playing {} as flac".format(self.filename))
+
