@@ -1,3 +1,6 @@
+from grader import Assignments
+
+
 class IntroToPython:
     def lesson(self):
         return f"""
@@ -8,3 +11,23 @@ class IntroToPython:
 
     def check(self, code):
         return code == "a = 1\nb = 'hello'"
+
+
+class Statistics(Assignments):
+    def lesson(self):
+        return (
+                "Good work so far, "
+                + self.student
+                + ". Now calculate the average of the numbers "
+                + " 1, 5, 18, -3 and assign to a variable named 'avg'"
+        )
+
+    def check(self, code):
+        import statistics
+
+        code = "import statistics\n" + code
+        local_vars = {}
+        global_vars = {}
+        exec(code, global_vars, local_vars)
+
+        return local_vars.get("avg") == statistics.mean([1, 5, 18, -3])
