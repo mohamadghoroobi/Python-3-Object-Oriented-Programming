@@ -25,3 +25,13 @@ class OggFile(AudioFile):
 
     def play(self):
         print("playing {} as ogg".format(self.filename))
+
+
+
+class FlacFile:
+    def __init__(self,filename):
+        if not filename.endswith(".flac"):
+            raise Exception("Invalid file format")
+
+        self.filename = filename
+
