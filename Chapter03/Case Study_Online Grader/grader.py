@@ -17,6 +17,29 @@ class Grader:
         self.assignment_classes[id] = assignment_class
         return id
 
+    def start_assigment(self, student, id):
+        self.student_graders[student] = AssignmentGrader(
+            student, self.assignment_classes[id]
+        )
+
+    def get_lesson(self, student):
+        assignment = self.student_graders[student]
+        return assignment.lesson()
+
+    def check_assignment(self, student, code):
+        assignment = self.student_graders[student]
+        return assignment.check(code)
+
+    def assignment_summary(self, student):
+        grader = self.student_graders[student]
+        return f"""
+        {student}'s attempts at {grader.assignment.__class__.__name__}:
+        
+        attempts: {grader.attempts}
+        correct: {grader.correct_attempts}
+        passed: {grader.correct_attempts > 0}
+        """
+
 
 class Assignment(metaclass=abc.ABCMeta):
     @abc.abstractmethod
