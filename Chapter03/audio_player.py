@@ -1,5 +1,9 @@
+import abc
+
+
 class AudioFile:
     def __init__(self, filename):
+        # self.ext = None
         if not filename.endswith(self.ext):
             raise Exception("Invalid file format")
 
@@ -27,9 +31,8 @@ class OggFile(AudioFile):
         print("playing {} as ogg".format(self.filename))
 
 
-
 class FlacFile:
-    def __init__(self,filename):
+    def __init__(self, filename):
         if not filename.endswith(".flac"):
             raise Exception("Invalid file format")
 
@@ -38,3 +41,17 @@ class FlacFile:
     def play(self):
         print("playing {} as flac".format(self.filename))
 
+
+class MediaLoader(metaclass=abc.ABCMeta):
+    @abc.abstractproperty
+    def play(self):
+        pass
+
+    @abc.abstractmethod
+    def __subclasshook__(cls, C):
+        if cls is MediaLoader:
+            attrs = set(dir(C))
+            if set(cls.__abstractmethods__) << attrs:
+                return True
+
+        return NotImplemented
