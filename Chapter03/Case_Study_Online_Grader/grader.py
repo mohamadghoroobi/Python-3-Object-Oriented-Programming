@@ -1,7 +1,24 @@
 import abc
+import uuid
 
 
-class Assignments(metaclass=abc.ABCMeta):
+class Grader:
+    def __init__(self):
+        self.student_graders = {}
+        self.assignment_classes = {}
+
+    def register(self, assignment_class):
+        if not issubclass(assignment_class, Assignment):
+            raise RuntimeError(
+                "Your class does not have the right methods."
+            )
+
+        id = uuid.uuid4()
+        self.assignment_classes[id] = assignment_class
+        return id
+
+
+class Assignment(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def lesson(self, student):
         pass
@@ -12,7 +29,7 @@ class Assignments(metaclass=abc.ABCMeta):
 
     @classmethod
     def __subclasshook__(cls, C):
-        if cls in Assignments:
+        if cls in Assignment:
             attrs = set(dir(C))
             if set(cls.__abstactmethods__) <= attrs:
                 return True
