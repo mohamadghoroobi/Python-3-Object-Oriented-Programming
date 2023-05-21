@@ -10,3 +10,10 @@ def call_exceptor():
     no_return()
     print("an exception was raised")
     print("...so theses lines don't run")
+
+
+try:
+    no_return()
+except:
+    print("I caught an exception")
+print("executed after the exception")
