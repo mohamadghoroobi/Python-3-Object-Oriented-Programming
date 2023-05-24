@@ -1,10 +1,17 @@
 import hashlib
 
+
 class AuthException(Exception):
     def __init__(self, username, user=None):
         super().__init__(username, user)
-        self.username= username
+        self.username = username
         self.user = user
+
+class UsernameAlreadyExists(AuthException):
+    pass
+
+
+
 class User:
     def __init__(self, username, password):
         """Create a new user object. The password
