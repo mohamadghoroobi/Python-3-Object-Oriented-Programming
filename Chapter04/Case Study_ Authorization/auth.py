@@ -127,4 +127,7 @@ class Authorizer:
                 raise NotPermittedError(username)
             else:
                 return True
-# authenticator = Authenticator()
+
+
+authenticator = Authenticator()
+authorizor = Authorizer(authenticator)
