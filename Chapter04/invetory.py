@@ -48,9 +48,17 @@ class OutOfStock(Exception):
 class InvalidItemType(Exception):
     pass
 
-# item_type = "widget"
-# inv = Inventory()
-# inv.lock(item_type)
-# try:
-#     num_left = inv.purchase(item_type)
-# except Invad
+
+item_type = "widget"
+inv = Inventory()
+inv.lock(item_type)
+try:
+    num_left = inv.purchase(item_type)
+except InvalidItemType:
+    print("Sorry, we don't sell {}".format(item_type))
+except OutOfStock:
+    print("Sorry, item is out of stock.")
+else:
+    print(f"Purchase complete. There are {num_left} {item_type}s left")
+finally:
+    inv.unlock(item_type)
