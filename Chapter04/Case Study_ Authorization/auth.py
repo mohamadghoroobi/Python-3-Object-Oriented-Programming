@@ -19,6 +19,10 @@ class PasswordTooShort(AuthException):
 class InvalidUsername(AuthException):
     pass
 
+
+class InvalidPassword(AuthException):
+    pass
+
 class User:
     def __init__(self, username, password):
         """Create a new user object. The password
