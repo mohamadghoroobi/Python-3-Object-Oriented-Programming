@@ -75,3 +75,11 @@ class Authenticator:
         if username in self.users:
             return self.users[username].is_logged_in
         return False
+
+
+class Authorizer:
+    def __init__(self, authenticator):
+        self.authenticator = authenticator
+        self.permissions = {}
+
+# authenticator = Authenticator()
