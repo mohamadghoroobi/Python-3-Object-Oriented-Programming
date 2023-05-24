@@ -7,7 +7,12 @@ class AuthException(Exception):
         self.username = username
         self.user = user
 
+
 class UsernameAlreadyExists(AuthException):
+    pass
+
+
+class PasswordTooShort(AuthException):
     pass
 
 
@@ -32,3 +37,9 @@ class User:
         user, false otherwise."""
         encrypted = self._encrypt_pw(password)
         return encrypted == self.password
+
+class Authenticator:
+    def __init__(self):
+        """Construct an authenticator to manage
+        users logging in and out."""
+        self.users = {}
