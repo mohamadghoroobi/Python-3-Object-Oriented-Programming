@@ -44,6 +44,10 @@ class Inventory:
 class OutOfStock(Exception):
     pass
 
+
+class InvalidItemType(Exception):
+    pass
+
 # item_type = "widget"
 # inv = Inventory()
 # inv.lock(item_type)
