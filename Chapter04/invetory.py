@@ -1,5 +1,11 @@
 class InvalidWithdrawl(Exception):
-    pass
+    def __init__(self, balance, amount):
+        super().__init__(f"account doesn't have ${amount}")
+        self.amount = amount
+        self.balance = balance
+
+    def overage(self):
+        return self.amount - self.balance
 
 
-raise InvalidWithdrawl("You don't have $50 in your acoount.")
+raise InvalidWithdrawl(25, 50)
