@@ -16,6 +16,8 @@ class PasswordTooShort(AuthException):
     pass
 
 
+class InvalidUsername(AuthException):
+    pass
 
 class User:
     def __init__(self, username, password):
@@ -43,3 +45,17 @@ class Authenticator:
         """Construct an authenticator to manage
         users logging in and out."""
         self.users = {}
+
+    def add_user(self, username, password):
+        if username in self.users:
+            raise UsernameAlreadyExists(username)
+        if len(password) < 6:
+            raise PasswordTooShort(username)
+        self.users[username] = User(username, password)
+
+
+    # def login(self, username, password):
+    #     try:
+    #         user = self.users[username]
+    #     except KeyError:
+    #         raise InvalidUsername(username)
