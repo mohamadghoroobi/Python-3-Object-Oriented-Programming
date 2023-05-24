@@ -5,7 +5,8 @@ class User:
         """Create a new user object. The password
         will be encrypted before storing."""
         self.username = username
-        # self.passord =
+        self.password = self._encrypt_pw(password)
+        self.is_logged_in = False
 
     def _encrypt_pw(self, password):
         """Encrypt the password with the username and return
@@ -13,3 +14,9 @@ class User:
         has_string = self.username + password
         hash_string = has_string.encode("utf8")
         return hashlib.sha256(hash_string).hexdigest()
+
+    def check_password(self, password):
+        """Return True if the password is valid for this
+        user, false otherwise."""
+        encrypted = self._encrypt_pw(password)
+        return encrypted == self.password
