@@ -43,3 +43,15 @@ class Editor:
         else:
             return True
 
+    def test(self):
+        if self.is_permitted("test program"):
+            print("Testing program now...")
+
+    def change(self):
+        if self.is_permitted("change program"):
+            print("Changing program now...")
+
+    def quit(self):
+        raise SystemExit()
+
+
