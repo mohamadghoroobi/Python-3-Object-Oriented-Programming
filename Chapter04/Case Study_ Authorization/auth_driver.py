@@ -10,7 +10,7 @@ auth.authorizor.permit_user("test program", "joe")
 class Editor:
     def __init__(self):
         self.username = None
-        self.munu_map = {
+        self.menu_map = {
             "login": self.login,
             "test": self.test,
             "change": self.change,
@@ -20,7 +20,7 @@ class Editor:
     def login(self):
         logged_in = False
         while not logged_in:
-            username = input ("username: ")
+            username = input("username: ")
             password = input("password: ")
             try:
                 logged_in = auth.authenticator.login(username, password)
@@ -54,4 +54,28 @@ class Editor:
     def quit(self):
         raise SystemExit()
 
+    def menu(self):
+        try:
+            answer = ""
+            while True:
+                print(
+                    """
+                        Please enter a command:
+                        \tlogin\tLogin
+                        \ttest\tTest the program
+                        \tchange\tChange the program
+                        \tquit\tQuit
+                    """
+                )
+                answer = input("enter a command: ").lower()
+                try:
+                    func = self.menu_map[answer]
+                except KeyError:
+                    print("{} is not a valid option".format(answer))
+                else:
+                    func()
+        finally:
+            print("Thank you for testing the auth module.")
 
+
+Editor().menu()
