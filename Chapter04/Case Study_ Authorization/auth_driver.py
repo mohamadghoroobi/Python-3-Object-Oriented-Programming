@@ -17,4 +17,16 @@ class Editor:
             "quit": self.quit,
         }
 
-
+    def login(self):
+        logged_in = False
+        while not logged_in:
+            username = input ("username: ")
+            password = input("password: ")
+            try:
+                logged_in = auth.authenticator.login(username, password)
+            except auth.InvalidUsername:
+                print("Sorry, this username does not exist.")
+            except auth.InvalidPassword:
+                print("Sorry, incorrect password.")
+            else:
+                self.username = username
