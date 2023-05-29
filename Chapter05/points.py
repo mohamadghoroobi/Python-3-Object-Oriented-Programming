@@ -42,3 +42,13 @@ class Polygon:
         for i in range(len(self.vertices)):
             perimeter += points[i].distance(points[i + 1])
         return perimeter
+
+
+class Polygon2:
+    def __init__(self, points=None):
+        points = points if points else []
+        self.vertices = []
+        for point in points:
+            if isinstance(point, tuple):
+                point = Point(*point)
+            self.vertices.append(point)
