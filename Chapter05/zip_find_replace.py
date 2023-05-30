@@ -11,7 +11,7 @@ class ZipReplace:
         self.replace_string = replace_string
         self.temp_directory = Path(f"unzipped-{filename}")
 
-    #overall manager
+    # overall manager
     def zip_find_replace(self):
         self.unzip_files()
         self.find_replace()
@@ -22,5 +22,12 @@ class ZipReplace:
         with zipfile.ZipFile(self.filename) as zip:
             zip.extractall(self.temp_directory)
 
+    def find_replace(self):
+        for filename in self.temp_directory.iterdir():
+            with filename.open() as file:
+                contents = file.read()
+            contents = contents.replace(self.search_string, self.replace_string)
+            with filename.open("w") as file:
+                file.write(contents)
 
 
