@@ -30,4 +30,12 @@ class ZipReplace:
             with filename.open("w") as file:
                 file.write(contents)
 
+    def zip_files(self):
+        with zipfile.ZipFile(self.filename, "w") as file:
+            for filename in self.temp_directory.iterdir():
+                file.write(filename, filename.name)
+        shutil.rmtree(self.temp_directory)
 
+
+if __name__ == "__main__":
+    ZipReplace(*sys.argv[1:4]).zip_find_replace()
