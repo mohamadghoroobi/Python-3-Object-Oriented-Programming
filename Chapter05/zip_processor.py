@@ -43,3 +43,8 @@ class ZipReplace:
             contents = contents.replace(self.search_string, self.replace_string)
             with filename.open("w") as file:
                 file.write(contents)
+
+
+class ScaleZip(ZipProcessor):
+    def process_files(self):
+        pass
