@@ -22,10 +22,14 @@ class Cursor:
         self.position = 0
 
     def forward(self):
-        self.cursor += 1
+        self.position += 1
 
     def back(self):
-        self.cursor -= 1
+        self.position -= 1
 
-
-
+    def home(self):
+        while self.document.characters[self.position - 1].character != "\n":
+            self.position -= 1
+            if self.position == 0:
+                # Got to beginning of file before newline
+                break
