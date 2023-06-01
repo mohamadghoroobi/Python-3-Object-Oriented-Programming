@@ -33,3 +33,10 @@ class Cursor:
             if self.position == 0:
                 # Got to beginning of file before newline
                 break
+
+    def end(self):
+        while(
+            self.position < len(self.document.characters)
+            and self.document.characters[self.position] != "\n"
+        ):
+            self.position += 1
