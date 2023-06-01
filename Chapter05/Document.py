@@ -15,6 +15,12 @@ class Document:
         with open(self.filename, "w") as f:
             f.write("".join(self.characters))
 
+
+class Cursor:
+    def __init__(self, document):
+        self.document = document
+        self.position = 0
+
     def forward(self):
         self.cursor += 1
 
