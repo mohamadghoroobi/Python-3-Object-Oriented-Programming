@@ -15,4 +15,11 @@ class Document:
         with open(self.filename, "w") as f:
             f.write("".join(self.characters))
 
+    def forward(self):
+        self.cursor += 1
+
+    def back(self):
+        self.cursor -= 1
+
+
 
