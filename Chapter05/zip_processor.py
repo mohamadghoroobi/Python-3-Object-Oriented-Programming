@@ -53,3 +53,5 @@ class ScaleZip(ZipProcessor):
             scaled = im.resize((640, 480))
             scaled.save(filename)
 
+if __name__=="__main__":
+    ScaleZip(*sys.argv[1:4]).process_zip()
