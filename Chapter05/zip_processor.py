@@ -47,4 +47,9 @@ class ZipReplace:
 
 class ScaleZip(ZipProcessor):
     def process_files(self):
-        pass
+        '''Scale each image in the directory to 640x480'''
+        for filename in self.temp_directory.iterdir():
+            im = Image.open(str(filename))
+            scaled = im.resize((640, 480))
+            scaled.save(filename)
+
