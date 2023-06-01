@@ -10,6 +10,7 @@ class Point:
            point defaults to the origin."""
         self.move(x, y)
 
+
     def move(self, x, y):
         "Move the point to a new location in 2D space."
         self.x = x
