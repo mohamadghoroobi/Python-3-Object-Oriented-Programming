@@ -1,3 +1,6 @@
+from functools import total_ordering
+
+
 class WeirdSortee:
     def __init__(self, string, number, sort_num):
         self.string = string
@@ -10,3 +13,10 @@ class WeirdSortee:
 
     def __repr__(self):
         return f"{self.string} : {self.number}"
+
+    def __eq__(self, object):
+        return all((
+            self.string == object.string,
+            self.number == object.number,
+            self.sort_num == object.number,
+        ))
