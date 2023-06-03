@@ -1,6 +1,9 @@
+from collections import defaultdict
+
 def letter_frequency(sentence):
-    frequencies = {}
+    frequencies = defaultdict
     for letter in sentence:
-        frequncy = frequencies.setdefault(letter, 0)
-        frequencies[letter] = frequncy + 1
+        # frequency = frequencies.setdefault(letter, 0)
+        # frequencies[letter] = frequency + 1
+        frequencies[letter] += 1
     return frequencies
