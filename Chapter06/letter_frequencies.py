@@ -1,3 +1,4 @@
+import string
 from collections import defaultdict, Counter
 
 
@@ -41,4 +42,15 @@ print(
         Counter(responses).most_common(1)[0][0]
     )
 )
+
+
+CHARACTERS = list(string.ascii_letters) + [" "]
+
+
+def list_letter_frequency(sentence):
+    frequencies = [(c, 0) for c in CHARACTERS]
+    for letter in sentence:
+        index = CHARACTERS.index(letter)
+        frequencies[index] = (letter, frequencies[index][1]+1)
+    return frequencies
 
