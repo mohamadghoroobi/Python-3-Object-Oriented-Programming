@@ -17,6 +17,15 @@ class LinkCollector:
         links = LINK_REGEX.findall(page)
         print(links)
 
+    def normalize_url(self, path, link):
+        if link.startwith("http://"):
+            return link
+        elif link.startwith("/"):
+            return self.url + link
+        else:
+            return self.url + path.rpartition(
+                '/')[0] + '/' + link
+
 
 if __name__ == "__main__":
     LinkCollector(sys.argv[1]).collect_links()
