@@ -1,5 +1,6 @@
 from collections import defaultdict, Counter
 
+
 def letter_frequency(sentence):
     frequencies = defaultdict(float)
     for letter in sentence:
@@ -23,3 +24,21 @@ d = defaultdict(tuple_counter)
 
 def counter_letter_frequency(sentence):
     return Counter(sentence)
+
+
+responses = [
+    "vanilla",
+    "chocolate",
+    "chocolate",
+    "vanilla",
+    "vanilla",
+    "caramel",
+    "strawberry",
+    "vanilla"
+]
+print(
+    "The children voted for {} ice cream".format(
+        Counter(responses).most_common(1)[0][0]
+    )
+)
+
