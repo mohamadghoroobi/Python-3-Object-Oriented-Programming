@@ -11,4 +11,6 @@ random_keys[("abc", 123)] = "so do tuples"
 
 
 class AnObject:
-    pass
+    def __init__(self, value):
+        self.value = value
+
