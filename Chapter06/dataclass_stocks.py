@@ -21,3 +21,10 @@ class StockDecorated:
     cur = float
     high = float
     low = float
+
+@dataclass
+class StockDefaults:
+    name: str
+    cur: float = 0.0
+    high: float = 0.0
+    low: float = 0.0
