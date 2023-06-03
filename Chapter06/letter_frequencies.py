@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 def letter_frequency(sentence):
     frequencies = defaultdict(float)
@@ -20,3 +20,6 @@ def tuple_counter():
 
 d = defaultdict(tuple_counter)
 
+
+def counter_letter_frequency(sentence):
+    return Counter(sentence)
