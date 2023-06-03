@@ -2,26 +2,36 @@ from urllib.request import urlopen
 from urllib.parse import urlparse
 import re
 import sys
+from queue import Queue
 
-LINK_REGEX = re.compile(
-    "<a [^>]*href=['\"]([^'\"]+)['\"][^>]*>")
+LINK_REGEX = re.compile("<a [^>]*href=['\"]([^'\"]+)['\"][^>]*>")
 
 
 class LinkCollector:
     def __init__(self, url):
-        self.url = "" + urlparse(url).netloc
-        self.collected_links = set()
+        self.url = "http://%s" % urlparse(url).netloc
+        self.collected_links = {}
         self.visited_links = set()
 
-    def collect_links(self, path="/"):
-        full_url = self.url + path
-        self.visited_links.add(full_url)
-        page = str(urlopen(full_url).read())
-        links = LINK_REGEX.findall(page)
-        links = {self.normalize_url(path, link) for link in links}
-        self.collected_links = links.union(self.collected_links)
-        unvisited_links = links.difference(self.visited_links)
-        print(links, self.visited_links, self.collect_links, unvisited_links)
+    def collect_links(self):
+        queue = Queue()
+        queue.put(self.url)
+        while not queue.empty():
+            url = queue.get().rstrip("/")
+            self.visited_links.add(url)
+            page = str(urlopen(url).read())
+            links = LINK_REGEX.findall(page)
+            links = {
+                self.normalize_url(urlparse(url).path, link)
+                for link in links
+            }
+            self.collected_links[url] = links
+            for link in links:
+                self.collected_links.setdefault(link, set())
+            unvisited_links = links.difference(self.visited_links)
+            for link in unvisited_links:
+                if link.startswith(self.url):
+                    queue.put(link)
 
     def normalize_url(self, path, link):
         if link.startswith("http://"):
@@ -40,5 +50,5 @@ class LinkCollector:
 if __name__ == "__main__":
     collector = LinkCollector(sys.argv[1])
     collector.collect_links()
-    for link in collector.collected_links:
-        print(link)
+    for link, item in collector.collected_links.items():
+        print("%s: %s" % (link, item))
