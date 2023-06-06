@@ -8,3 +8,7 @@ class CustomSequence:
     def __getitem__(self, index):
         return f"x{index}"
 
+
+class FunkyBackwards:
+    def __reversed__(self):
+        return "BACKWARDS"
