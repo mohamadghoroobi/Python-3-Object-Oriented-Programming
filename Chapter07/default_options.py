@@ -23,6 +23,9 @@ class Options:
         # self.options = dict(Options.default_options)
         # self.options.update(kwargs)
         self.options = {**Options.default_options, **kwargs}
+        # x = {'a': 1, 'b': 2}
+        # y = {'b': 11, 'c': 3}
+        # z = {**x, **y}
 
     def __getitem__(self, key):
         return self.options[key]
