@@ -14,3 +14,20 @@ with StringJoiner() as joiner:
         joiner.append(random.choice(string.ascii_letters))
 
 print(joiner.result)
+
+
+def arguments(x, y='default', *, a, b='only'):
+    print(x, y, a, b)
+
+
+number = 5
+
+
+def funky_func(number=number):
+    print(number)
+
+
+number = 6
+funky_func(8)
+funky_func()
+print(number)
