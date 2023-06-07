@@ -20,8 +20,9 @@ class Options:
     }
 
     def __init__(self, **kwargs):
-        self.options = dict(self.default_options)
-        self.options.update(kwargs)
+        # self.options = dict(Options.default_options)
+        # self.options.update(kwargs)
+        self.options = {**Options.default_options, **kwargs}
 
     def __getitem__(self, key):
         return self.options[key]
