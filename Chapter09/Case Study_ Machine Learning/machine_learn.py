@@ -46,6 +46,7 @@ def name_colors(model_colors, target_colors, num_neighbors=5):
         name_guess = Counter(n[1] for n in near).most_common()[0][0]
         yield target, name_guess
 
+
 def write_results(colors, filename="output.csv"):
     with open(filename, "w") as file:
         writer = csv.writer(file)
