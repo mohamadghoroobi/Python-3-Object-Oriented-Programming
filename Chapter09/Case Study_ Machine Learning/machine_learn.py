@@ -41,7 +41,7 @@ def nearest_neighbors(model_colors, target_colors, num_neighbors=5):
 
 def name_colors(model_colors, target_colors, num_neighbors=5):
     for target, near in nearest_neighbors(
-        model_colors, target_colors, num_neighbors=5
+            model_colors, target_colors, num_neighbors=5
     ):
         name_guess = Counter(n[1] for n in near).most_common()[0][0]
         yield target, name_guess
@@ -52,3 +52,13 @@ def write_results(colors, filename="output.csv"):
         writer = csv.writer(file)
         for (r, g, b), name in colors:
             writer.writerow([name, f"#{r:02x}{g:02x}{b:02x}"])
+
+
+def process_colors(dataset_filename="colors.csv"):
+    model_colors = load_colors(dataset_filename)
+    colors = name_colors(model_colors, generate_colors(), 5)
+    write_results(colors)
+
+
+if __name__ == "__main__":
+    process_colors()
