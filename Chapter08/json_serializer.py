@@ -12,6 +12,12 @@ class ContactEncoder(json.JSONEncoder):
             }
         return super().default(obj)
 
+def decode_contact(dic):
+    if dic.get("is_contact"):
+        return Contact(dic["first"], dic["last"])
+    else:
+        return dic
+
 
 class Contact:
     def __init__(self, first, last):
