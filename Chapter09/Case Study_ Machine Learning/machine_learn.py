@@ -28,3 +28,12 @@ def color_distance(color1, color2):
     for c1, c2 in channels:
         sum_distance_squared += (c1 - c2) ** 2
     return sum_distance_squared
+
+
+def nearest_neighbors(model_colors, target_colors, num_neighbors=5):
+    model_colors = list(model_colors)
+    for target in target_colors:
+        distances = sorted(
+            ((color_distance(c[0], target), c) for c in model_colors)
+        )
+        yield target, [d[1] for d in distances[:num_neighbors]]
