@@ -29,3 +29,4 @@ class UpdatedURL:
     def __setstate__(self, data):
         self.__dict__ = data
         self.schedule()
+
