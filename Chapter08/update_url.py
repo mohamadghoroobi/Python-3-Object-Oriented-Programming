@@ -19,3 +19,13 @@ class UpdatedURL:
         self.timer = Timer(3600, self.update)
         self.timer.setDaemon(True)
         self.timer.start()
+
+    def __getstate__(self):
+        new_state = self.__dict__.copy()
+        if 'timer' in new_state:
+            del new_state['timer']
+        return new_state
+
+    def __setstate__(self, data):
+        self.__dict__ = data
+        self.schedule()
