@@ -20,3 +20,11 @@ def load_colors(filename):
 def generate_colors(count=100):
     for i in range(count):
         yield (randint(0, 255), randint(0, 255), randint(0, 255))
+
+
+def color_distance(color1, color2):
+    channels = zip(color1, color2)
+    sum_distance_squared = 0
+    for c1, c2 in channels:
+        sum_distance_squared += (c1 - c2) ** 2
+    return sum_distance_squared
