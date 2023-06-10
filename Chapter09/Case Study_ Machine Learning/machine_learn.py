@@ -15,3 +15,8 @@ def load_colors(filename):
         for line in lines:
             label, hex_color = line
             yield (hex_to_rgb(hex_color), label)
+
+
+def generate_colors(count=100):
+    for i in range(count):
+        yield (randint(0, 255), randint(0, 255), randint(0, 255))
