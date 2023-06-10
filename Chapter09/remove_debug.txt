@@ -1,0 +1,2 @@
+Jan 26, 2015 11:25:25            This is a debugging message.
+Jan 26, 2015 11:26:13            Debug messages are only useful if you want to figure something out.
