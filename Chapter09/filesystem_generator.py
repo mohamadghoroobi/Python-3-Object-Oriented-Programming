@@ -8,6 +8,7 @@ class Folder(File):
         super().__init__(name)
         self.children = []
 
+
 root = Folder("")
 etc = Folder("etc")
 root.children.append(etc)
@@ -21,5 +22,16 @@ root.children.append(var)
 log = Folder("log")
 var.children.append(log)
 log.children.append(File("messages"))
-log.children.append(File("kernel")
+log.children.append(File("kernel"))
 
+
+def walk(file):
+    if isinstance(file, Folder):
+        yield file.name + "/"
+        for f in file.children:
+            yield from walk(f)
+    else:
+        yield file.name
+
+a = [node for node in walk(root)]
+print(a)
