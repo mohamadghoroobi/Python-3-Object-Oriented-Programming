@@ -47,6 +47,6 @@ try:
         #     client = LogSocket(client)
         # if client.getpeername()[0] in compress_hosts:
         #     client = Gzip(client)
-        client = LogSocket(client)
+        respond(LogSocket(client))
 finally:
     server.close()
