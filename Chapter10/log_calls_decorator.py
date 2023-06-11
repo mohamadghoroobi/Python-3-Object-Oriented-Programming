@@ -19,6 +19,7 @@ def log_calls(func):
 
     return wrapper
 
+
 def test1(a, b, c):
     print("\ttest1 called")
 
@@ -30,3 +31,14 @@ def test2(a, b):
 def test3(a, b):
     print("\ttest3 called")
     time.sleep(1)
+
+
+test1 = log_calls(test1)
+test2 = log_calls(test2)
+test3 = log_calls(test3)
+
+test1(1, 2, 3)
+test2(4, b=5)
+test3(6, 7)
+
+
