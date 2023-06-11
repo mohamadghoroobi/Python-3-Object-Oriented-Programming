@@ -18,3 +18,15 @@ def log_calls(func):
         return return_value
 
     return wrapper
+
+def test1(a, b, c):
+    print("\ttest1 called")
+
+
+def test2(a, b):
+    print("\ttest2 called")
+
+
+def test3(a, b):
+    print("\ttest3 called")
+    time.sleep(1)
