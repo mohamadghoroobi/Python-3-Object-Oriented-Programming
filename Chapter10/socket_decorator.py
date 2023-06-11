@@ -1,4 +1,21 @@
 import socket
+import gzip
+from io import BytesIO
+
+
+class Gzip:
+    def __init__(self, socket):
+        self.socket = socket
+
+    def send(self, data):
+        buf = BytesIO()
+        zipfile = gzip.GzipFile(fileobj=buf, mode="w")
+        zipfile.write(data)
+        zipfile.close()
+        self.socket.send(buf.getvalue())
+
+    def close(self):
+        self.socket.close()
 
 
 class LogSocket:
@@ -25,6 +42,11 @@ server.listen(1)
 try:
     while True:
         client, addr = server.accept()
-        respond(client)
+        # respond(client)
+        # if log_send:
+        #     client = LogSocket(client)
+        # if client.getpeername()[0] in compress_hosts:
+        #     client = Gzip(client)
+        client = LogSocket(client)
 finally:
     server.close()
