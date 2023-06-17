@@ -28,3 +28,6 @@ class DateAgeAdapter:
         return self.calculator.calculate_age(date)
 
 
+class AgeableDate(datetime.date):
+    def split(self, char):
+        return self.year, self.month, self.day
