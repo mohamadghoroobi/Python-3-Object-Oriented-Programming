@@ -43,7 +43,7 @@ class XmlSerializer:
 #             raise ValueError(format)
 
 
-# factory = SerializerFactory()
+# Factory = SerializerFactory()
 
 
 class ObjectSerializer:
