@@ -43,3 +43,11 @@ class PandoraServiceBuilder:
 
     def authorize(self, key, secret):
         return 'PANDORA_CONSUMER_KEY', 'PANDORA_CONSUMER_SECRET'
+
+
+class LocalService:
+    def __init__(self, location):
+        self._location = location
+
+    def test_connection(self):
+        print(f'Accessing Local music at {self._location}')
