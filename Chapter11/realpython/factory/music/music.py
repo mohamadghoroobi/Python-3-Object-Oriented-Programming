@@ -28,3 +28,18 @@ class PandoraService:
 
     def test_connection(self):
         print(f'Accessing Pandora with {self._key} and {self._secret}')
+
+
+class PandoraServiceBuilder:
+    def __init__(self):
+        self._instance = None
+
+    def __call__(self, pandora_client_key, pandora_client_secret, **_ignored):
+        if not self._instance:
+            consumer_key, consumer_secret = self.authorize(
+                pandora_client_key, pandora_client_secret)
+            self._instance = PandoraService(consumer_key, consumer_secret)
+        return self._instance
+
+    def authorize(self, key, secret):
+        return 'PANDORA_CONSUMER_KEY', 'PANDORA_CONSUMER_SECRET'
