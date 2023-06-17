@@ -31,3 +31,10 @@ class XmlSerializer:
 
     def to_str(self):
         return et.tostring(self._element, encoding='unicode')
+
+
+class ObjectSerializer:
+    def serialize(self, serializable, format):
+        serializer = factory.get_serializer(format)
+        serializable.serialize(serializer)
+        return serializer.to_str()
