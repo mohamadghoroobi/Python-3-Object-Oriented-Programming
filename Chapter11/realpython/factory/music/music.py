@@ -51,3 +51,7 @@ class LocalService:
 
     def test_connection(self):
         print(f'Accessing Local music at {self._location}')
+
+
+def create_local_music_service(local_music_location, **_ignored):
+    return LocalService(local_music_location)
