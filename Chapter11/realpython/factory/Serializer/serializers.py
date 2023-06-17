@@ -67,7 +67,7 @@ class SerializerFactory:
             raise ValueError(format)
         return creator()
 
-
 factory = SerializerFactory()
 factory.register_format('JSON', JsonSerializer)
 factory.register_format('XML', XmlSerializer)
+
