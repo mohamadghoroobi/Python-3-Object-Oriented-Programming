@@ -19,3 +19,12 @@ class SpotifyServiceBuilder:
 
     def authorize(self, key, secret):
         return 'SPOTIFY_ACCESS_CODE'
+
+
+class PandoraService:
+    def __init__(self, consumer_key, consumer_secret):
+        self._key = consumer_key
+        self._secret = consumer_secret
+
+    def test_connection(self):
+        print(f'Accessing Pandora with {self._key} and {self._secret}')
