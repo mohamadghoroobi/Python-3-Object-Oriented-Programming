@@ -20,3 +20,17 @@ class TiledStrategy:
                     ),
                 )
         return out_img
+
+
+
+class CenteredStrategy:
+    def make_background(self, img_file, desktop_size):
+        in_img = Image.open(img_file)
+        out_img = Image.new("RGB", desktop_size)
+        left = (out_img.size[0] - in_img.size[0]) // 2
+        top = (out_img.size[1] - in_img.size[1]) // 2
+        out_img.paste(
+            in_img,
+            (left, top, left + in_img.size[0], top + in_img.size[1]),
+        )
+        return out_img
