@@ -33,14 +33,14 @@ class XmlSerializer:
         return et.tostring(self._element, encoding='unicode')
 
 
-class SerializerFactory:
-    def get_serializer(self, format):
-        if format == 'JSON':
-            return JsonSerializer()
-        elif format == 'XML':
-            return XmlSerializer()
-        else:
-            raise ValueError(format)
+# class SerializerFactory:
+#     def get_serializer(self, format):
+#         if format == 'JSON':
+#             return JsonSerializer()
+#         elif format == 'XML':
+#             return XmlSerializer()
+#         else:
+#             raise ValueError(format)
 
 
 # factory = SerializerFactory()
