@@ -17,8 +17,8 @@ spotify.test_connection()
 local = music.factory.create('LOCAL', **config)
 local.test_connection()
 
-pandora2 = music.services.get('PANDORA', **config)
+pandora2 = pandora.get('PANDORA', **config)
 print(f'id(pandora) == id(pandora2): {id(pandora) == id(pandora2)}')
 
-spotify2 = music.services.get('SPOTIFY', **config)
+spotify2 = music.create_local_music_service.get('SPOTIFY', **config)
 print(f'id(spotify) == id(spotify2): {id(spotify) == id(spotify2)}')
