@@ -22,4 +22,3 @@ class StatsList(list):
             if value == mode_freq:
                 modes.append(item)
         return modes
-
